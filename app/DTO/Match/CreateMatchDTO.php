@@ -1,9 +1,11 @@
 <?php
 
 namespace App\DTO\Match;
+
+use App\DTO\DTOInterface;
 use Illuminate\Http\Request;
 
-class CreateMatchDTO
+class CreateMatchDTO implements DTOInterface
 {
     public function __construct(
         public int|string $team_a_id,
