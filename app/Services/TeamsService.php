@@ -22,9 +22,9 @@ class TeamsService
         return $this->repository->findOne($id);
     }
 
-    public function delete(string $id): void
+    public function delete(string $id): bool | null
     {
-        $this->repository->delete($id);
+       return $this->repository->delete($id);
     }
 
     public function new(string $name): stdClass
