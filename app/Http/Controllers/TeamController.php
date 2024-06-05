@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\Team\CreateTeamDTO;
 use App\Services\TeamsService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -36,7 +37,8 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->teams->new(CreateTeamDTO::makeFromRequest($request));
+        return redirect()->intended(route('teams.index',['message' => 'Team created successfully']));
     }
 
     /**

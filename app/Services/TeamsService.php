@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DTO\Team\CreateTeamDTO;
 use stdClass;
 
 class TeamsService
@@ -27,9 +28,9 @@ class TeamsService
        return $this->repository->delete($id);
     }
 
-    public function new(string $name): stdClass
+    public function new(CreateTeamDTO $dto): stdClass
     {
-        return $this->repository->create($name);
+        return $this->repository->create($dto);
     }
 
     public function update(string $name, string $id): stdClass | null

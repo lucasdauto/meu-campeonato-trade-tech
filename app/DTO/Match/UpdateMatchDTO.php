@@ -2,7 +2,10 @@
 
 namespace App\DTO\Match;
 
-class UpdateMatchDTO
+use Illuminate\Http\Request;
+use App\DTO\DTOInterface;
+
+class UpdateMatchDTO implements DTOInterface
 {
     public function __construct(
         public int|string $team_a_id,
@@ -11,4 +14,15 @@ class UpdateMatchDTO
         public int $team_b_score,
         public int|string $championship_id,
     ){}
+
+    public static function makeFromRequest(Request $request): self
+    {
+        return new self(
+            $request->input('team_a_id'),
+            $request->input('team_b_id'),
+            $request->input('team_a_score'),
+            $request->input('team_b_score'),
+            $request->input('championship_id'),
+        );
+    }
 }
