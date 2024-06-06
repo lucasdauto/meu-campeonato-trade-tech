@@ -4,14 +4,12 @@ namespace App\Services;
 
 use App\DTO\Team\CreateTeamDTO;
 use App\DTO\Team\UpdateTeamDTO;
+use App\Repositories\Team\TeamRepositoryInterface;
 use stdClass;
 
 class TeamsService
 {
-    protected $repository;
-    public function __construct()
-    {
-    }
+    public function __construct(protected TeamRepositoryInterface $repository) {}
 
     public function getAll(string $filter = null): array
     {
@@ -24,14 +22,14 @@ class TeamsService
         return $this->repository->findOne($id);
     }
 
-    public function delete(string $id): bool | null
+    public function delete(string $id): bool
     {
        return $this->repository->delete($id);
     }
 
     public function new(CreateTeamDTO $dto): stdClass | null
     {
-        return $this->repository->create($dto);
+        return $this->repository->new($dto);
     }
 
     public function update(UpdateTeamDTO $dto): stdClass | null
