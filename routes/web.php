@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('teams', TeamController::class);
     Route::resource('championships', ChampionshipController::class);
     Route::resource('matches', MatchController::class);
+
+    Route::post('simulate-match', [MatchController::class, 'simulateMatch'])->name('math.simulate-match');
 });
 
 require __DIR__.'/auth.php';

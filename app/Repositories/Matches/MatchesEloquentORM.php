@@ -2,17 +2,15 @@
 
 namespace App\Repositories\Championship;
 
-use App\DTO\Championship\CreateChampionshipDTO;
-use App\DTO\Championship\UpdateChampionshipDTO;
-use App\DTO\Team\UpdateTeamDTO;
-use App\Models\Championship;
+use App\DTO\Championship\{CreateChampionshipDTO, UpdateChampionshipDTO};
+use App\Models\Matches;
 use App\Repositories\Championship\ChampionshipRepositoryInterface;
 use App\Repositories\DefautEloquentORM;
 use stdClass;
 
 class ChampionshipEloquentORM implements ChampionshipRepositoryInterface
 {
-    public function __construct(protected Championship $model){}
+    public function __construct(protected Matches $model){}
 
     public function getAll(string $filter): array
     {
@@ -28,7 +26,10 @@ class ChampionshipEloquentORM implements ChampionshipRepositoryInterface
 
     public function findOne(string $id): stdClass | null
     {
-        $championship = $this->model->find($id);
+        $championship = $this->model
+                            ->find($id)
+                            ->with(['teamA', 'teamB', 'championship'])
+                            ->get();
 
         if(!$championship) {
             return null;
