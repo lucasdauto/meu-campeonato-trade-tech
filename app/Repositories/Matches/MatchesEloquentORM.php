@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Repositories\Championship;
+namespace App\Repositories\Matches;
 
-use App\DTO\Championship\{CreateChampionshipDTO, UpdateChampionshipDTO};
+use App\DTO\Match\{CreateMatchDTO, UpdateMatchDTO};
 use App\Models\Matches;
-use App\Repositories\Championship\ChampionshipRepositoryInterface;
+use App\Repositories\Matches\MatchesRepositoryInterface;
 use App\Repositories\DefautEloquentORM;
 use stdClass;
 
-class ChampionshipEloquentORM implements ChampionshipRepositoryInterface
+class MatchesEloquentORM implements MatchesRepositoryInterface
 {
     public function __construct(protected Matches $model){}
 
@@ -26,36 +26,36 @@ class ChampionshipEloquentORM implements ChampionshipRepositoryInterface
 
     public function findOne(string $id): stdClass | null
     {
-        $championship = $this->model
+        $matches = $this->model
                             ->find($id)
-                            ->with(['teamA', 'teamB', 'championship'])
+                            ->with(['teamA', 'teamB', 'Matches'])
                             ->get();
 
-        if(!$championship) {
+        if(!$matches) {
             return null;
         }
 
-        return (object) $championship->toArray();
+        return (object) $matches->toArray();
     }
-    public function new(CreateChampionshipDTO $dto): stdClass
+    public function new(CreateMatchDTO $dto): stdClass
     {
         return (object) $this->model
                             ->create((array) $dto)
                             ->toArray();
     }
-    public function update(UpdateChampionshipDTO $dto): stdClass | null
+    public function update(UpdateMatchDTO $dto): stdClass | null
     {
-        if(!$championship = $this->model->find($dto->id))
+        if(!$matches = $this->model->find($dto->id))
         {
             return null;
         }
-        $championship->update((array) $dto);
-        return (object) $championship->toArray();
+        $matches->update((array) $dto);
+        return (object) $matches->toArray();
     }
     public function delete(string $id): bool
     {
-        $championship = $this->model->findOrFail($id);
+        $matches = $this->model->findOrFail($id);
 
-        return $championship->delete();
+        return $matches->delete();
     }
 }

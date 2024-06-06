@@ -13,6 +13,7 @@ class UpdateMatchDTO
         public int $team_a_score,
         public int $team_b_score,
         public int|string $championship_id,
+        public int|string $id
     ){}
 
     public static function makeFromRequest(Request $request, string|int $id): self
