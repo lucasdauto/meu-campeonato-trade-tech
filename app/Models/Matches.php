@@ -10,10 +10,10 @@ class Matches extends Model
     use HasFactory;
 
     protected $fillable = [
-        'team1_id',
-        'team2_id',
-        'score_team1',
-        'score_team2',
+        'team_a_id',
+        'team_b_id',
+        'team_a_score',
+        'team_b_score',
         'championship_id',
     ];
 

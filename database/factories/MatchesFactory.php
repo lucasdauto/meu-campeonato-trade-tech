@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Matches>
  */
-class MatchFactory extends Factory
+class MatchesFactory extends Factory
 {
 
      protected $model = Matches::class;
@@ -23,10 +23,10 @@ class MatchFactory extends Factory
     public function definition()
     {
         return [
-            'team1_id' => Team::factory(),
-            'team2_id' => Team::factory(),
-            'score_team1' => $this->faker->numberBetween(0, 7),
-            'score_team2' => $this->faker->numberBetween(0, 7),
+            'team_a_id' => Team::factory(),
+            'team_b_id' => Team::factory(),
+            'team_a_score' => $this->faker->numberBetween(0, 7),
+            'team_b_score' => $this->faker->numberBetween(0, 7),
             'championship_id' => Championship::factory(),
         ];
     }
