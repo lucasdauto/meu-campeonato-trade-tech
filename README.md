@@ -55,7 +55,7 @@ Certifique-se de ter os seguintes requisitos instalados em sua máquina local:
 7. Execute as migrações do banco de dados (certifique-se de ter configurado corretamente seu banco de dados no arquivo `.env`):
 
     ```bash
-    php artisan migrate
+    php artisan migrate && php artisan db:seed
     ```
 
 8. Inicie o servidor de desenvolvimento:
