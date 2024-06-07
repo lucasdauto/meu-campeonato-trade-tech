@@ -35,7 +35,7 @@ const teams = reactive(props.teams);
                             <td class="text-left py-3 px-4">
                                 <a :href="`/teams/${team.id}`"
                                     class="bg-blue-500 text-white px-4 py-2 rounded mr-2">Historico</a>
-                                <a :href="`/teams/${team.id}/edit`"
+                                <a :href="route('teams.edit', team.id)"
                                     class="bg-green-500 text-white px-4 py-2 rounded mr-2">Editar</a>
                                 <form :action="`/teams/${team.id}`" method="POST" class="inline">
                                     <input type="hidden" name="_method" value="DELETE">

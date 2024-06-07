@@ -69,8 +69,13 @@ class TeamController extends Controller
      */
     public function edit(string $id)
     {
-        $team = $this->teams->findOne($id);
-        return Inertia::render('Teams/Edit', ['team' => $team]);
+        $teamData = $this->teams->findOne($id);
+
+        if ($teamData === null) {
+            return redirect()->route('teams.index')->with('error', 'team not found');
+        }
+
+        return Inertia::render('Teams/Edit', ['team' => $teamData]);
     }
 
     /**
@@ -78,6 +83,7 @@ class TeamController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $team = $this->teams->update(UpdateTeamDTO::makeFromRequest($request, $id));
 
         if(!$team){
