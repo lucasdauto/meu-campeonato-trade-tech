@@ -21,7 +21,8 @@ class TeamController extends Controller
         return Inertia::render('Teams/Index',
         [
             'teams' => $teams,
-            'status' => session('status')
+            'status' => session('status'),
+            'csrfToken' => csrf_token()
         ]);
     }
 
