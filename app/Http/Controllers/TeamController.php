@@ -56,6 +56,7 @@ class TeamController extends Controller
     public function show(string $id)
     {
         $team = $this->teams->findOne($id);
+
         return Inertia::render('Teams/Show',
         [
             'team' => $team,
