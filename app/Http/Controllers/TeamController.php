@@ -30,7 +30,10 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Teams/Create');
+        return Inertia::render('Teams/Create',
+        [
+            'status' => session('status')
+        ]);
     }
 
     /**
@@ -55,7 +58,8 @@ class TeamController extends Controller
         $team = $this->teams->findOne($id);
         return Inertia::render('Teams/Show',
         [
-            'team' => $team
+            'team' => $team,
+            'status' => session('status')
         ]);
     }
 

@@ -10,7 +10,9 @@ class Team extends Model
 {
     use HasFactory;
 
-     public function matches() {
-        return $this->hasMany(Matches::class);
+    public function matches()
+    {
+        return $this->hasMany(Matches::class, 'team_a_id')
+                        ->orWhere('team_b_id', $this->id);
     }
 }

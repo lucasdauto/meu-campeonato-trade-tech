@@ -24,7 +24,7 @@ class TeamEloquentORM implements TeamRepositoryInterface
     }
     public function findOne(string $id): stdClass | null
     {
-        $team = $this->model->find($id);
+        $team = $this->model->with('matches')->find($id);
 
         if(!$team) {
             return null;
