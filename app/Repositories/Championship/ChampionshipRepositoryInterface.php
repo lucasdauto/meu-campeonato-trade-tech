@@ -14,4 +14,5 @@ interface ChampionshipRepositoryInterface
     public function new(CreateChampionshipDTO $dto): stdClass;
     public function update(UpdateChampionshipDTO $dto): stdClass | null;
     public function delete(string $id): bool;
+    public function simulate():void;
 }

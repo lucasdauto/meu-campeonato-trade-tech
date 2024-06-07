@@ -6,6 +6,8 @@ use App\DTO\Championship\CreateChampionshipDTO;
 use App\DTO\Championship\UpdateChampionshipDTO;
 use App\DTO\Team\UpdateTeamDTO;
 use App\Models\Championship;
+use App\Models\Matches;
+use App\Models\Team;
 use App\Repositories\Championship\ChampionshipRepositoryInterface;
 use App\Repositories\DefautEloquentORM;
 use stdClass;
@@ -56,5 +58,31 @@ class ChampionshipEloquentORM implements ChampionshipRepositoryInterface
         $championship = $this->model->findOrFail($id);
 
         return $championship->delete();
+    }
+
+    public function simulate(): void
+    {
+        $teams = Team::all()->shuffle();
+        $match = [];
+
+        $championship = $this->model->findOrFail();
+
+        while(count($teams) > 1) {
+            $team1 = $teams->pop();
+            $team2 = $teams->pop();
+
+            $output = shell_exec('python3 ' . base_path('teste.py'));
+            list($score1, $score2) = explode("\n", trim($output));
+
+            $match = Matches::create([
+            'team1_id' => $team1->id,
+            'team2_id' => $team2->id,
+            'score_team1' => $score1,
+            'score_team2' => $score2,
+            'championship_id' => $championship->id,
+            ]);
+
+            $matches[] = $match;
+        }
     }
 }
