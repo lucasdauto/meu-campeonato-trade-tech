@@ -3,7 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { reactive } from 'vue';
 
-const props = defineProps(['teams', 'errors', 'auth']);
+const props = defineProps(['teams', 'errors', 'auth', 'csrfToken']);
 
 const teams = reactive(props.teams);
 </script>
@@ -37,7 +37,7 @@ const teams = reactive(props.teams);
                                     class="bg-blue-500 text-white px-4 py-2 rounded mr-2">Historico</a>
                                 <a :href="route('teams.edit', team.id)"
                                     class="bg-green-500 text-white px-4 py-2 rounded mr-2">Editar</a>
-                                <form :action="`/teams/${team.id}`" method="POST" class="inline">
+                                <form :action="route('teams.destroy', team.id)" method="POST" class="inline">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" :value="props.csrfToken">
                                     <button type="submit"
