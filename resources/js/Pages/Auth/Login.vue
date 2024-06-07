@@ -66,7 +66,6 @@ const submit = () => {
             </div>
 
             <!-- Auth Socialite -->
-            <!-- Auth Socialite -->
             <div class="flex items-center justify-end mt-4">
                 <Socialite class="w-full" />
             </div>
