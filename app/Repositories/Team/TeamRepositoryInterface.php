@@ -7,7 +7,7 @@ use stdClass;
 
 interface TeamRepositoryInterface
 {
-    public function getAll(string $filter): array;
+    public function getAll(string $filter = null): array;
     public function findOne(string $id): stdClass|null;
     public function new(CreateTeamDTO $dto): stdClass;
     public function update(UpdateTeamDTO $dto): stdClass | null;

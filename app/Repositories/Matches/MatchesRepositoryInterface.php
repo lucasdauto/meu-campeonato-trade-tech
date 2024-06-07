@@ -8,7 +8,7 @@ use stdClass;
 
 interface MatchesRepositoryInterface
 {
-    public function getAll(string $filter): array;
+    public function getAll(string $filter = null): array;
     public function findOne(string $id): stdClass|null;
     public function new(CreateMatchDTO $dto): stdClass;
     public function update(UpdateMatchDTO $dto): stdClass | null;
