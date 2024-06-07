@@ -27,7 +27,10 @@ const teams = reactive(props.teams);
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="team in teams" :key="team.id" class="hover:bg-gray-100">
+                        <tr v-if="teams.length === 0">
+                            <td colspan="2" class="text-center py-3 px-4">Nenhum time encontrado</td>
+                        </tr>
+                        <tr v-else v-for="team in teams" :key="team.id" class="hover:bg-gray-100">
                             <td class="w-1/3 text-left py-3 px-4">{{ team.name }}</td>
                             <td class="text-left py-3 px-4">
                                 <a :href="`/teams/${team.id}`"
