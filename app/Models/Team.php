@@ -10,6 +10,10 @@ class Team extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function matches()
     {
         return $this->hasMany(Matches::class, 'team_a_id')
