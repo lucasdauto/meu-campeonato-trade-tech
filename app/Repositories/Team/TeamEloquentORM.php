@@ -11,7 +11,7 @@ class TeamEloquentORM implements TeamRepositoryInterface
 {
     public function __construct(protected Team $model){}
 
-    public function getAll(string $filter): array
+    public function getAll(string $filter = null): array
     {
         return $this->model
                     ->where(function($query) use ($filter) {
@@ -19,7 +19,7 @@ class TeamEloquentORM implements TeamRepositoryInterface
                             $query->where('name', 'like', "%{$filter}%");
                         }
                     })
-                    ->all()
+                    ->get()
                     ->toArray();
     }
     public function findOne(string $id): stdClass | null

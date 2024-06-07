@@ -12,7 +12,7 @@ class MatchesEloquentORM implements MatchesRepositoryInterface
 {
     public function __construct(protected Matches $model){}
 
-    public function getAll(string $filter): array
+    public function getAll(string $filter = null): array
     {
         return $this->model
                     ->where(function($query) use ($filter) {
@@ -20,7 +20,7 @@ class MatchesEloquentORM implements MatchesRepositoryInterface
                             $query->where('name', 'like', "%{$filter}%");
                         }
                     })
-                    ->all()
+                    ->get()
                     ->toArray();
     }
 
