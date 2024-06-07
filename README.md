@@ -55,10 +55,19 @@ Certifique-se de ter os seguintes requisitos instalados em sua máquina local:
 7. Execute as migrações do banco de dados (certifique-se de ter configurado corretamente seu banco de dados no arquivo `.env`):
 
     ```bash
-    php artisan migrate && php artisan db:seed
+    php artisan migrate
     ```
+8. Rode as migrações do banco de dados
+    
+    ```bash
+    php artisan db:seed
+    ```
+9. Inicie o servidor do front-end
 
-8. Inicie o servidor de desenvolvimento:
+    ```bash
+    npm run serve
+    ```
+10. Inicie o servidor de desenvolvimento:
 
     ```bash
     php artisan serve
@@ -98,6 +107,18 @@ Sail é um ambiente de desenvolvimento para Laravel usando Docker. Se você pref
 
     ```bash
     ./vendor/bin/sail artisan migrate && ./vendor/bin/sail artisan db:seed
+    ```
+6. Execute as seeds do banco de dados:
+
+    ```bash
+    ./vendor/bin/sail artisan db:seed
+    ```
+
+
+7.  Compilar assets para desenvolvimento
+
+    ```bash
+    ./vendor/bin/sail npm run dev
     ```
 
 Acesse a aplicação em `http://localhost`.
