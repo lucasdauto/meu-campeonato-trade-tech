@@ -14,14 +14,21 @@ const team = reactive(props.team);
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Historico do time {{ team.team.name }}</h2>
+            <h2 v-if="team" class="font-semibold text-xl text-gray-800 leading-tight">Histórico do time {{ team.name }}
+            </h2>
+            <h2 v-else class="font-semibold text-xl text-gray-800 leading-tight">Histórico do time não
+                encontrado</h2>
         </template>
 
-        <div class="mt-6 grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+        <div v-if="team && team.matches.length === 0" class="text-gray-500 mt-6">Nenhum histórico encontrado</div>
+
+        <div v-else-if="team && team.matches.length > 0"
+            class="mt-6 grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
             <div v-for="(match, index) in team.matches" :key="index"
                 class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="px-4 py-5 sm:px-6">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Campeonato: {{ match.championship_name }}</h3>
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Campeonato: {{ match.championship_name }}
+                    </h3>
                 </div>
                 <div class="border-t border-gray-200">
                     <dl>
