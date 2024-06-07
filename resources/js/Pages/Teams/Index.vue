@@ -13,10 +13,10 @@ const teams = reactive(props.teams);
 
         <Head title="Times" />
 
-        <div class="container mx-auto mt-8">
+        <div class="container mx-auto mt-8 px-6">
             <div class="flex justify-between mb-4">
                 <h1 class="text-2xl font-bold">Times</h1>
-                <a href="/teams/create" class="bg-blue-500 text-white px-4 py-2 rounded">Adicionar Time</a>
+                <a :href="route('teams.create')" class="bg-blue-500 text-white px-4 py-2 rounded">Adicionar Time</a>
             </div>
             <div class="bg-white shadow-md rounded my-6">
                 <table class="min-w-full bg-white">
